@@ -6,7 +6,8 @@
   <title>NABY Rune Oracle Card</title>
   <meta name="description" content="NABY RUNE ORACLE CARD — 룬 오라클 카드 해설 사이트" />
   <style>
-    :root {
+    :root { 
+      scroll-behavior: auto; /* 해시/앵커 스크롤 부드러운 이동 비활성화 */
       --bg: #0b0f14;
       --panel: #121823;
       --panel-2: #0e141e;
@@ -281,7 +282,7 @@
           </div>
           <div class="title">${r.name}</div>
           <div class="meaning"><strong>정방향</strong> — ${r.up}</div>
-          ${showRev.checked ? `<div class="meaning" style="margin-top:6px"><strong>역방향</strong> — ${r.rv || '—'}</div>` : ''}
+          ${showRev.checked ? `<div class="meaning" style="margin-top:6px"><strong>역방향</strong> — ${(r.rv && r.rv.trim() !== '—') ? r.rv : r.up}</div>` : ''}
           <div class="meta">
             <span>${r.up.split(',').slice(0,3).join(', ')}…</span>
             <a class="btn" href="#" data-code="${r.code}">자세히</a>
@@ -293,7 +294,7 @@
           document.getElementById('m-kr').textContent = r.kr;
           document.getElementById('m-name').textContent = r.name;
           document.getElementById('m-up').textContent = r.up;
-          document.getElementById('m-rv').textContent = r.rv || '—';
+          document.getElementById('m-rv').textContent = (r.rv && r.rv.trim() !== '—') ? r.rv : r.up;
           modal.showModal();
         });
         grid.appendChild(el);
@@ -312,7 +313,8 @@
       if(sort.value === 'name') list.sort((a,b)=> a.code.localeCompare(b.code));
       if(sort.value === 'korean') list.sort((a,b)=> a.kr.localeCompare(b.kr, 'ko'));
       render(list);
-      location.hash = encodeURIComponent(term);
+      // (hash 저장 비활성화: 일부 브라우저에서 스크롤 점프 유발)
+      // location.hash = encodeURIComponent(term);
     }
 
     q.addEventListener('input', searchAndSort);
@@ -333,7 +335,7 @@
     }
     function miniCard(r){
       const orientation = r.reversed ? '역방향' : '정방향';
-      const mean = r.reversed ? (r.rv || '—') : r.up;
+      const mean = r.reversed ? ((r.rv && r.rv.trim() !== '—') ? r.rv : r.up) : r.up;
       return `
         <article class="card-mini">
           <div class="row">
@@ -351,7 +353,7 @@
       const qtext = toggleQuestion.checked && questionInput.value.trim() ? `<div class="note">질문: ${questionInput.value.trim()}</div>` : '';
       drawResult.innerHTML = qtext + picked.map(miniCard).join('');
       // 스크롤 포커스
-      drawResult.scrollIntoView({behavior:'smooth', block:'start'});
+      
     }
     btnDraw1.addEventListener('click', ()=> draw(1));
     btnDraw3.addEventListener('click', ()=> draw(3));
