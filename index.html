@@ -7,86 +7,119 @@
   <meta name="description" content="NABY RUNE ORACLE CARD — 룬 오라클 카드 해설 사이트" />
   <style>
     :root { 
-      scroll-behavior: auto; /* 해시/앵커 스크롤 부드러운 이동 비활성화 */
-      --bg: #0b0f14;
-      --panel: #121823;
-      --panel-2: #0e141e;
-      --text: #e8eef6;
-      --muted: #9bb0c9;
-      --accent: #7cc4ff;
-      --accent-2: #77f2c6;
-      --chip: #1a2332;
-      --ring: #2b3a52;
-      --shadow: 0 10px 30px rgba(0,0,0,.45);
+      scroll-behavior: auto;
+      --bg:#0b0f14; --panel:#121823; --panel-2:#0e141e; --text:#e8eef6; --muted:#9bb0c9;
+      --accent:#7cc4ff; --accent-2:#77f2c6; --chip:#1a2332; --ring:#2b3a52; --shadow:0 10px 30px rgba(0,0,0,.45);
     }
-    * { box-sizing: border-box; }
-    html, body { height: 100%; }
-    body {
-      margin: 0; background: linear-gradient(180deg, #0a0f16, #0b1016 35%, #0f141d);
-      color: var(--text); font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-      line-height: 1.5;
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; background:linear-gradient(180deg,#0a0f16,#0b1016 35%,#0f141d);
+      color:var(--text); font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
+      line-height:1.5;
     }
-    header {
-      position: sticky; top: 0; z-index: 20; backdrop-filter: saturate(160%) blur(10px);
-      background: linear-gradient(180deg, rgba(10,15,22,.85), rgba(10,15,22,.65));
-      border-bottom: 1px solid var(--ring);
+    header{
+      position:sticky; top:0; z-index:20; backdrop-filter:saturate(160%) blur(10px);
+      background:linear-gradient(180deg,rgba(10,15,22,.85),rgba(10,15,22,.65));
+      border-bottom:1px solid var(--ring);
     }
-    .container { max-width: 1100px; margin: 0 auto; padding: 16px; }
-    .brand { display: flex; align-items: center; gap: 10px; }
-    .brand h1 { font-size: 20px; margin: 0; letter-spacing: .4px; }
-    .tag { font-size: 12px; color: var(--muted); background: var(--chip); border: 1px solid var(--ring); padding: 2px 8px; border-radius: 999px; }
-    .toolbar { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 12px; }
-    @media (min-width:720px){ .toolbar { grid-template-columns: 1fr 280px 120px; } }
-    input[type="search"], select {
-      width: 100%; padding: 12px 14px; border-radius: 12px; background: var(--panel);
-      color: var(--text); border: 1px solid var(--ring); outline: none; box-shadow: var(--shadow);
+    .container{max-width:1100px;margin:0 auto;padding:16px}
+    .brand{display:flex;align-items:center;gap:10px}
+    .brand h1{font-size:20px;margin:0;letter-spacing:.4px}
+    .tag{font-size:12px;color:var(--muted);background:var(--chip);border:1px solid var(--ring);padding:2px 8px;border-radius:999px}
+    .toolbar{display:grid;grid-template-columns:1fr;gap:10px;margin-top:12px}
+    @media(min-width:720px){.toolbar{grid-template-columns:1fr 280px 220px}}
+    input[type="search"],select{
+      width:100%;padding:12px 14px;border-radius:12px;background:var(--panel);
+      color:var(--text);border:1px solid var(--ring);outline:none;box-shadow:var(--shadow)
     }
-    input[type="search"]::placeholder { color: #89a0bd; }
-    .toggle {
-      display: inline-flex; align-items: center; gap: 8px; padding: 10px 12px; border-radius: 12px;
-      border: 1px solid var(--ring); background: var(--panel); cursor: pointer; user-select: none;
+    input[type="search"]::placeholder{color:#89a0bd}
+    .toggle{display:inline-flex;align-items:center;gap:8px;padding:10px 12px;border-radius:12px;border:1px solid var(--ring);background:var(--panel);cursor:pointer;user-select:none}
+    .grid{display:grid;grid-template-columns:repeat(1,minmax(0,1fr));gap:14px;padding:16px}
+    @media(min-width:640px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(min-width:960px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+    .card{
+      background:radial-gradient(120% 120% at 80% 0%,rgba(124,196,255,.08),rgba(119,242,198,.06) 40%,rgba(10,14,20,0) 65%),var(--panel);
+      border:1px solid var(--ring);border-radius:16px;padding:16px;box-shadow:var(--shadow);
+      transition:transform .15s ease,border-color .15s ease;position:relative;overflow:hidden
     }
-    .grid { display: grid; grid-template-columns: repeat(1,minmax(0,1fr)); gap: 14px; padding: 16px; }
-    @media (min-width:640px){ .grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
-    @media (min-width:960px){ .grid { grid-template-columns: repeat(3,minmax(0,1fr)); } }
-    .card {
-      background: radial-gradient(120% 120% at 80% 0%, rgba(124,196,255,.08), rgba(119,242,198,.06) 40%, rgba(10,14,20,0) 65%) , var(--panel);
-      border: 1px solid var(--ring); border-radius: 16px; padding: 16px; box-shadow: var(--shadow);
-      transition: transform .15s ease, border-color .15s ease;
-      position: relative; overflow: hidden;
-    }
-    .card:hover { transform: translateY(-2px); border-color: #8dd0ff; }
-    .chip { display: inline-block; background: var(--chip); border: 1px solid var(--ring); padding: 2px 8px; border-radius: 999px; font-size: 12px; color: var(--muted); }
-    .title { font-size: 18px; margin: 6px 0 8px; font-weight: 700; }
-    .meaning { font-size: 14px; color: var(--text); opacity: .92; }
-    .meta { font-size: 12px; color: var(--muted); margin-top: 6px; display: flex; gap: 10px; align-items: center; }
-    .btn {
-      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-      background: linear-gradient(180deg, #1a2740, #152036);
-      border: 1px solid var(--ring); color: var(--text);
-      padding: 10px 12px; border-radius: 12px; cursor: pointer; text-decoration: none; font-weight: 600;
-    }
-    .btn:hover { border-color: #8dd0ff; }
-    .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+    .card:hover{transform:translateY(-2px);border-color:#8dd0ff}
+    .chip{display:inline-block;background:var(--chip);border:1px solid var(--ring);padding:2px 8px;border-radius:999px;font-size:12px;color:var(--muted)}
+    .title{font-size:18px;margin:6px 0 8px;font-weight:700}
+    .meaning{font-size:14px;color:var(--text);opacity:.92}
+    .meta{font-size:12px;color:var(--muted);margin-top:6px;display:flex;gap:10px;align-items:center}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(180deg,#1a2740,#152036);border:1px solid var(--ring);color:var(--text);padding:10px 12px;border-radius:12px;cursor:pointer;text-decoration:none;font-weight:600}
+    .btn:hover{border-color:#8dd0ff}
+    .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
 
-    dialog { width: min(760px, 90vw); background: var(--panel-2); color: var(--text); border: 1px solid var(--ring); border-radius: 16px; padding: 0; box-shadow: var(--shadow); }
-    dialog::backdrop { backdrop-filter: blur(4px); background: rgba(3,7,13,.6); }
-    .modal-head { padding: 16px; border-bottom: 1px solid var(--ring); display: flex; justify-content: space-between; align-items: center; }
-    .modal-body { padding: 16px; }
-    .badge { font-size: 11px; letter-spacing: .2px; padding: 4px 8px; border-radius: 999px; border: 1px solid var(--ring); background: var(--chip); color: var(--muted); }
-    .list { display: grid; gap: 8px; margin-top: 8px; }
-    .footer { text-align: center; color: var(--muted); padding: 40px 16px; border-top: 1px solid var(--ring); }
-    .credit { font-size: 12px; color: var(--muted); }
-    .empty { color: var(--muted); border: 1px dashed var(--ring); border-radius: 14px; padding: 16px; text-align: center; }
+    dialog{width:min(760px,90vw);background:var(--panel-2);color:var(--text);border:1px solid var(--ring);border-radius:16px;padding:0;box-shadow:var(--shadow)}
+    dialog::backdrop{backdrop-filter:blur(4px);background:rgba(3,7,13,.6)}
+    .modal-head{padding:16px;border-bottom:1px solid var(--ring);display:flex;justify-content:space-between;align-items:center}
+    .modal-body{padding:16px}
+    .badge{font-size:11px;letter-spacing:.2px;padding:4px 8px;border-radius:999px;border:1px solid var(--ring);background:var(--chip);color:var(--muted)}
+    .list{display:grid;gap:8px;margin-top:8px}
+    .footer{text-align:center;color:var(--muted);padding:40px 16px;border-top:1px solid var(--ring)}
+    .credit{font-size:12px;color:var(--muted)}
+    .empty{color:var(--muted);border:1px dashed var(--ring);border-radius:14px;padding:16px;text-align:center}
+
+    /* 뽑기 영역 */
     .drawbox{margin:18px 0;padding:14px;border:1px solid var(--ring);border-radius:16px;background:var(--panel);box-shadow:var(--shadow)}
-  .draw-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
-  .draw-result{display:grid;grid-template-columns:repeat(1,minmax(0,1fr));gap:12px;margin-top:12px}
-  @media (min-width:720px){.draw-result{grid-template-columns:repeat(3,minmax(0,1fr))}}
-  .card-mini{background:radial-gradient(120% 120% at 80% 0%, rgba(124,196,255,.08), rgba(119,242,198,.06) 40%, rgba(10,14,20,0) 65%),var(--panel-2);border:1px solid var(--ring);border-radius:14px;padding:12px}
-  .card-mini h4{margin:6px 0 4px;font-size:16px}
-  .note{font-size:12px;color:var(--muted)}
-  .hidden{display:none}
-</style>
+    .draw-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+
+    /* ✅ 질문을 그리드 밖에 고정 (밀림 방지) */
+    .question-box{
+      margin:8px 0 0; padding:10px 12px; border:1px solid var(--ring); border-radius:12px;
+      background:var(--panel-2); color:var(--muted);
+    }
+
+    /* ✅ 뽑기 결과 — 하이라이트 카드 스타일 */
+    .draw-result{
+      display:grid; grid-template-columns:repeat(1,minmax(0,1fr)); gap:12px; margin-top:12px;
+    }
+    /* 모바일 포함 항상 가로 3열 */
+    .draw-result.triple{ grid-template-columns:repeat(3,minmax(0,1fr)) !important; gap:12px; }
+
+    .card-mini{
+      position:relative;
+      background:
+        radial-gradient(120% 120% at 80% 0%, rgba(124,196,255,.18), rgba(119,242,198,.14) 45%, rgba(10,14,20,0) 68%),
+        linear-gradient(180deg, #141b2a, #121826);
+      border:1px solid rgba(124,196,255,.35);
+      border-radius:14px;
+      padding:12px;
+      box-shadow:
+        0 8px 20px rgba(0,0,0,.45),
+        0 0 0 1px rgba(124,196,255,.12) inset;
+      transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    }
+    .card-mini::after{ /* 은은한 글로우 링 */
+      content:""; position:absolute; inset:-2px;
+      border-radius:16px; pointer-events:none;
+      box-shadow: 0 0 0 0 rgba(119,242,198,.0);
+      transition: box-shadow .25s ease;
+    }
+    .card-mini:hover{
+      transform:translateY(-2px) scale(1.01);
+      border-color: rgba(124,196,255,.65);
+      box-shadow:
+        0 12px 26px rgba(0,0,0,.50),
+        0 0 0 1px rgba(124,196,255,.20) inset;
+    }
+    .card-mini:hover::after{
+      box-shadow: 0 0 18px 4px rgba(124,196,255,.18), 0 0 28px 10px rgba(119,242,198,.10);
+    }
+    .card-mini h4{margin:6px 0 4px; font-size:16px}
+
+    /* 역방향 뱃지 강조 */
+    .badge.rev{
+      border-color: rgba(255,180,180,.35);
+      background: linear-gradient(180deg, rgba(60,20,30,.7), rgba(40,14,22,.8));
+      color: #ffd9d9;
+    }
+
+    .note{font-size:12px;color:var(--muted)}
+    .hidden{display:none}
+  </style>
 </head>
 <body>
   <header>
@@ -117,8 +150,14 @@
         <button id="btnDraw3" class="btn" type="button">🃏🃏🃏 3카드 뽑기</button>
         <span class="note">* 질문 입력은 선택 사항이며, 입력하지 않아도 뽑기가 가능합니다.</span>
       </div>
+
+      <!-- ✅ 질문 박스: 그리드 밖 고정 (밀림 방지) -->
+      <div id="questionBox" class="question-box hidden"></div>
+
+      <!-- ✅ 뽑기 결과 -->
       <div id="drawResult" class="draw-result" aria-live="polite"></div>
     </section>
+
     <div id="grid" class="grid"></div>
     <div id="empty" class="empty" style="display:none">검색 결과가 없습니다.</div>
   </main>
@@ -155,106 +194,31 @@
   <script>
     // --- 데이터: 룬 명세 (요약본) ---
     const RUNES = [
-      {
-        code:"Fehu", kr:"페후", name:"Fehu (페후)", up:"성취, 풍요, 성공, 재정적 안정, 수익 증가, 새로운 기회, 새로운 인연, 건강 회복 유지",
-        rv:"손실, 에너지 정체, 소통 부재, 기회 상실, 건강 악화, 회복 지연"
-      },
-      {
-        code:"Uruz", kr:"우르즈", name:"Uruz (우르즈)", up:"힘, 새로운 기회, 강인함, 재정적 기회, 근 시일 내 긍정적인 변화, 프로젝트 성공, 체력·활력 회복",
-        rv:"에너지 부족, 기회 상실, 관계 갈등, 소통 부족, 열정 상실, 재정관리 문제, 좌절, 질병 가능성, 회복 지연"
-      },
-      {
-        code:"Thurisaz", kr:"투리사즈", name:"Þurisaz (투리사즈)", up:"위험, 갈등, 경고, 갈등 극복, 신뢰 구축, 재정적 방어태세, 도전과 시험, 기회와 준비",
-        rv:"준비 부족, 충동적인 결정, 실수, 안일함, 자신감 부족, 갈등 심화, 면역력 저하, 건강관리 필수"
-      },
-      {
-        code:"Ansuz", kr:"안수즈", name:"Ansuz (안수즈)", up:"지혜와 학습, 깊은 의사소통, 영감과 창조, 정신적 안정, 건강 회복, 재정적 기회",
-        rv:"혼란, 오해(의사소통 차단), 갈등, 재정적 손실, 정보 왜곡, 표현 부족, 정신적 스트레스, 불안, 건강 악화"
-      },
-      {
-        code:"Raido", kr:"라이도", name:"Raido (라이도)", up:"여정, 이동, 조화로운 변화, 결단력, 재정적 안정과 성장, 성공적인 시작, 육체적·정신적 회복",
-        rv:"지연, 계획의 차질, 결정력 부족, 소통 단절, 갈등 심화, 재정관리 실패, 조직 내 불균형, 건강관리 부족"
-      },
-      {
-        code:"Kaunan", kr:"카우나즈", name:"Kaunan (카우나즈)", up:"창의성, 깨달음, 빛, 새로운 통찰과 이해, 재정적 문제 해결, 프로젝트 성공, 육체적·정신적 회복",
-        rv:"혼란, 정체, 소통 단절, 갈등 지속, 투자 실패, 회복 지연, 에너지 부족으로 건강 악화"
-      },
-      {
-        code:"Gebo", kr:"게보", name:"Gebo (게보)", up:"균형, 선물, 협력, 진솔한 관계 형성, 균형 잡힌 사랑, 경제적 이익, 목표 달성, 육체적·정신적 회복",
-        rv:"불안, 불만족, 흐름의 방해, 기회 상실, 소통 단절, 금전손실, 좌절, 에너지 저하, 회복의 어려움, 정서불안"
-      },
-      {
-        code:"Wunjo", kr:"운조", name:"Wunjo (운조)", up:"행복, 성공, 조화, 기회와 도약, 새로운 만남, 관계 진전, 새로운 투자 가능성, 프로젝트 시작",
-        rv:"—"
-      },
-      {
-        code:"Hagalaz", kr:"하갈라즈", name:"Hagalaz (하갈라즈)", up:"혼란, 파괴, 갑작스러운 변화(새 시작을 준비), 내적 성장 기회, 혁신과 재구성, 실패를 통한 교훈, 생활습관의 변화 필요",
-        rv:"—"
-      },
-      {
-        code:"Naudiz", kr:"나우디즈", name:"Naudiz (나우디즈)", up:"결핍, 필요, 제약, 압박, 절박함, 의지와 인내, 성장 가능성, 관계 노력 필요, 절약, 신중한 건강관리 필요",
-        rv:"—"
-      },
-      {
-        code:"Isaz", kr:"이사", name:"Isaz (이사)", up:"정체, 고립, 차가움, 내적 성찰, 균형 유지, 신뢰를 쌓는 시기, 자원 비축, 내실 다지기, 휴식과 회복 필요, 에너지 재충전",
-        rv:"—"
-      },
-      {
-        code:"Jera", kr:"제라", name:"Jera (제라)", up:"꾸준함으로 인한 결실, 보상, 성취, 관계의 안정성, 행복, 재정적 안정, 장기 프로젝트 완료, 꾸준한 자기 관리, 건강 회복",
-        rv:"—"
-      },
-      {
-        code:"Eiwaz", kr:"에이와즈", name:"Eiwaz (에이와즈)", up:"변화, 전환, 영적 성장, 인내와 끈기, 관계 어려움 극복, 재정적 회복, 정신적·육체적 재생 치유 시작, 균형을 찾음",
-        rv:"—"
-      },
-      {
-        code:"Perth", kr:"페르소", name:"Perþ (페르소)", up:"운명, 기회, 가능성, 새로운 정보, 새로운 관계, 행운의 기회, 숨겨진 건강 문제의 발견·해결, 건강 개선",
-        rv:"불확실성, 잘못된 선택, 운명 거부, 기회 상실, 갈등, 감정적 단절, 재정적 손실, 숨겨진 질병 발견, 회복 지연"
-      },
-      {
-        code:"Algiz", kr:"알기즈", name:"Algiz (알기즈)", up:"안전, 보호, 직관, 성공, 신뢰 강화, 경제적 안전 확보, 협력관계, 신체적·정신적 안정과 회복",
-        rv:"취약성, 방어 부족, 관계 불안정, 신뢰 부족, 갈등, 돌발성 재정적 손실, 기회 상실, 회복 지연, 건강 악화 가능성"
-      },
-      {
-        code:"Sowilo", kr:"소웰로", name:"Sowilo (소웰로)", up:"승리, 성공, 활력, 사랑의 회복, 관계 발전, 재정적 안정, 경력 발전, 목표 달성, 신체적 활력 증진, 정신적 안정",
-        rv:"—"
-      },
-      {
-        code:"Tiwaz", kr:"티와즈", name:"Tiwaz (티와즈)", up:"정의, 승리, 목표, 갈등 해결, 안정적 관계 형성, 재정적 성공, 장기 투자 성공, 승진, 회복력 증가",
-        rv:"좌절, 실패, 신뢰 부족, 갈등 심화, 재정적 손실, 투자 실패, 불규칙한 생활습관, 건강 악화, 회복 지연"
-      },
-      {
-        code:"Berkanan", kr:"베르카노", name:"Berkanan (베르카노)", up:"성장, 치유, 새 시작, 깊이 있는 관계로 발전, 새로운 수익 창출 기회, 신체 및 정신적 치유, 건강 회복",
-        rv:"성장의 지연, 정체, 관계 정체, 감정적 거리감, 과도한 지출, 수익 감소, 치유 지연, 건강 악화, 스트레스 증가"
-      },
-      {
-        code:"Ehwaz", kr:"에와즈", name:"Ehwaz (에와즈)", up:"전진, 협력, 신뢰, 깊은 유대관계 형성, 재정적 안정, 협력을 통한 프로젝트 성공, 새로운 직업 기회, 건강 개선",
-        rv:"정체, 불화, 소통 단절, 협력 실패, 재정 손실, 목표 달성 어려움, 프로젝트 실패, 건강 회복 지연, 정서불안"
-      },
-      {
-        code:"Mannaz", kr:"만나즈", name:"Mannaz (만나즈)", up:"자아성찰, 조화, 협력, 상부상조, 협력적 성공, 새로운 기회, 정신 건강 개선",
-        rv:"소외, 자기중심적 태도, 관계 단절, 오해와 갈등, 재정적 문제, 팀워크 부족, 정서불안, 스트레스 증가"
-      },
-      {
-        code:"Laguz", kr:"라구즈", name:"Laguz (라구즈)", up:"흐름, 직관, 치유, 현명한 투자, 재정적 안정, 내적 통찰을 통한 새로운 기회, 정서적·신체적 치유와 회복",
-        rv:"성취, 풍요, 성공, 재정적 안정, 수익 증가, 새로운 기회, 새로운 인연, 건강 회복 유지" // (원문 배열상 라구즈 아래에 Fehu 정방향 텍스트가 반복 표기되어 있어 이를 역방향에 임시 배치)
-      },
-      {
-        code:"Ingwaz", kr:"잉구즈", name:"Ingwaz (잉구즈)", up:"완성, 새로운 시작, 풍요, 가족의 형성, 장기적인 번영, 프로젝트의 성공적 마무리, 건강 증진, 새로운 활력",
-        rv:"—"
-      },
-      {
-        code:"Dagaz", kr:"다가즈", name:"Dagaz (다가즈)", up:"새벽, 깨달음, 긍정적 변화, 관계의 새 출발, 갈등 해소, 재정 안정·번영, 수익 창출, 신체적 회복·활력 증진",
-        rv:"—"
-      },
-      {
-        code:"Othala", kr:"오탈라", name:"Oþala (오탈라)", up:"유산, 안정, 번영, 행복, 갈등 해소, 장기적 재정 번영, 수익 창출, 가업 계승, 규칙적인 생활습관, 유전요인 관리",
-        rv:"유산의 상실, 가족 간의 갈등, 재정 손실, 상속 문제, 재산 분쟁, 장기적 목표 달성 어려움, 스트레스"
-      },
-      {
-        code:"Yr", kr:"이르", name:"Yr (이르)", up:"무한한 가능성, 운명적인 만남, 새로운 관계 시작, 예상치 못한 재정적 기회, 터닝포인트, 신체적·정서적 회복, 새로운 건강 루틴 발견",
-        rv:"무한한 가능성, 운명적인 만남, 새로운 관계 시작, 예상치 못한 재정적 기회, 터닝포인트, 신체적·정서적 회복, 새로운 건강 루틴 발견"
-      }
+      {code:"Fehu", kr:"페후", name:"Fehu (페후)", up:"성취, 풍요, 성공, 재정적 안정, 수익 증가, 새로운 기회, 새로운 인연, 건강 회복 유지", rv:"손실, 에너지 정체, 소통 부재, 기회 상실, 건강 악화, 회복 지연"},
+      {code:"Uruz", kr:"우르즈", name:"Uruz (우르즈)", up:"힘, 새로운 기회, 강인함, 재정적 기회, 근 시일 내 긍정적인 변화, 프로젝트 성공, 체력·활력 회복", rv:"에너지 부족, 기회 상실, 관계 갈등, 소통 부족, 열정 상실, 재정관리 문제, 좌절, 질병 가능성, 회복 지연"},
+      {code:"Thurisaz", kr:"투리사즈", name:"Þurisaz (투리사즈)", up:"위험, 갈등, 경고, 갈등 극복, 신뢰 구축, 재정적 방어태세, 도전과 시험, 기회와 준비", rv:"준비 부족, 충동적인 결정, 실수, 안일함, 자신감 부족, 갈등 심화, 면역력 저하, 건강관리 필수"},
+      {code:"Ansuz", kr:"안수즈", name:"Ansuz (안수즈)", up:"지혜와 학습, 깊은 의사소통, 영감과 창조, 정신적 안정, 건강 회복, 재정적 기회", rv:"혼란, 오해(의사소통 차단), 갈등, 재정적 손실, 정보 왜곡, 표현 부족, 정신적 스트레스, 불안, 건강 악화"},
+      {code:"Raido", kr:"라이도", name:"Raido (라이도)", up:"여정, 이동, 조화로운 변화, 결단력, 재정적 안정과 성장, 성공적인 시작, 육체적·정신적 회복", rv:"지연, 계획의 차질, 결정력 부족, 소통 단절, 갈등 심화, 재정관리 실패, 조직 내 불균형, 건강관리 부족"},
+      {code:"Kaunan", kr:"카우나즈", name:"Kaunan (카우나즈)", up:"창의성, 깨달음, 빛, 새로운 통찰과 이해, 재정적 문제 해결, 프로젝트 성공, 육체적·정신적 회복", rv:"혼란, 정체, 소통 단절, 갈등 지속, 투자 실패, 회복 지연, 에너지 부족으로 건강 악화"},
+      {code:"Gebo", kr:"게보", name:"Gebo (게보)", up:"균형, 선물, 협력, 진솔한 관계 형성, 균형 잡힌 사랑, 경제적 이익, 목표 달성, 육체적·정신적 회복", rv:"불안, 불만족, 흐름의 방해, 기회 상실, 소통 단절, 금전손실, 좌절, 에너지 저하, 회복의 어려움, 정서불안"},
+      {code:"Wunjo", kr:"운조", name:"Wunjo (운조)", up:"행복, 성공, 조화, 기회와 도약, 새로운 만남, 관계 진전, 새로운 투자 가능성, 프로젝트 시작", rv:"—"},
+      {code:"Hagalaz", kr:"하갈라즈", name:"Hagalaz (하갈라즈)", up:"혼란, 파괴, 갑작스러운 변화(새 시작을 준비), 내적 성장 기회, 혁신과 재구성, 실패를 통한 교훈, 생활습관의 변화 필요", rv:"—"},
+      {code:"Naudiz", kr:"나우디즈", name:"Naudiz (나우디즈)", up:"결핍, 필요, 제약, 압박, 절박함, 의지와 인내, 성장 가능성, 관계 노력 필요, 절약, 신중한 건강관리 필요", rv:"—"},
+      {code:"Isaz", kr:"이사", name:"Isaz (이사)", up:"정체, 고립, 차가움, 내적 성찰, 균형 유지, 신뢰를 쌓는 시기, 자원 비축, 내실 다지기, 휴식과 회복 필요, 에너지 재충전", rv:"—"},
+      {code:"Jera", kr:"제라", name:"Jera (제라)", up:"꾸준함으로 인한 결실, 보상, 성취, 관계의 안정성, 행복, 재정적 안정, 장기 프로젝트 완료, 꾸준한 자기 관리, 건강 회복", rv:"—"},
+      {code:"Eiwaz", kr:"에이와즈", name:"Eiwaz (에이와즈)", up:"변화, 전환, 영적 성장, 인내와 끈기, 관계 어려움 극복, 재정적 회복, 정신적·육체적 재생 치유 시작, 균형을 찾음", rv:"—"},
+      {code:"Perth", kr:"페르소", name:"Perþ (페르소)", up:"운명, 기회, 가능성, 새로운 정보, 새로운 관계, 행운의 기회, 숨겨진 건강 문제의 발견·해결, 건강 개선", rv:"불확실성, 잘못된 선택, 운명 거부, 기회 상실, 갈등, 감정적 단절, 재정적 손실, 숨겨진 질병 발견, 회복 지연"},
+      {code:"Algiz", kr:"알기즈", name:"Algiz (알기즈)", up:"안전, 보호, 직관, 성공, 신뢰 강화, 경제적 안전 확보, 협력관계, 신체적·정신적 안정과 회복", rv:"취약성, 방어 부족, 관계 불안정, 신뢰 부족, 갈등, 돌발성 재정적 손실, 기회 상실, 회복 지연, 건강 악화 가능성"},
+      {code:"Sowilo", kr:"소웰로", name:"Sowilo (소웰로)", up:"승리, 성공, 활력, 사랑의 회복, 관계 발전, 재정적 안정, 경력 발전, 목표 달성, 신체적 활력 증진, 정신적 안정", rv:"—"},
+      {code:"Tiwaz", kr:"티와즈", name:"Tiwaz (티와즈)", up:"정의, 승리, 목표, 갈등 해결, 안정적 관계 형성, 재정적 성공, 장기 투자 성공, 승진, 회복력 증가", rv:"좌절, 실패, 신뢰 부족, 갈등 심화, 재정적 손실, 투자 실패, 불규칙한 생활습관, 건강 악화, 회복 지연"},
+      {code:"Berkanan", kr:"베르카노", name:"Berkanan (베르카노)", up:"성장, 치유, 새 시작, 깊이 있는 관계로 발전, 새로운 수익 창출 기회, 신체 및 정신적 치유, 건강 회복", rv:"성장의 지연, 정체, 관계 정체, 감정적 거리감, 과도한 지출, 수익 감소, 치유 지연, 건강 악화, 스트레스 증가"},
+      {code:"Ehwaz", kr:"에와즈", name:"Ehwaz (에와즈)", up:"전진, 협력, 신뢰, 깊은 유대관계 형성, 재정적 안정, 협력을 통한 프로젝트 성공, 새로운 직업 기회, 건강 개선", rv:"정체, 불화, 소통 단절, 협력 실패, 재정 손실, 목표 달성 어려움, 프로젝트 실패, 건강 회복 지연, 정서불안"},
+      {code:"Mannaz", kr:"만나즈", name:"Mannaz (만나즈)", up:"자아성찰, 조화, 협력, 상부상조, 협력적 성공, 새로운 기회, 정신 건강 개선", rv:"소외, 자기중심적 태도, 관계 단절, 오해와 갈등, 재정적 문제, 팀워크 부족, 정서불안, 스트레스 증가"},
+      {code:"Laguz", kr:"라구즈", name:"Laguz (라구즈)", up:"흐름, 직관, 치유, 현명한 투자, 재정적 안정, 내적 통찰을 통한 새로운 기회, 정서적·신체적 치유와 회복", rv:"성취, 풍요, 성공, 재정적 안정, 수익 증가, 새로운 기회, 새로운 인연, 건강 회복 유지"},
+      {code:"Ingwaz", kr:"잉구즈", name:"Ingwaz (잉구즈)", up:"완성, 새로운 시작, 풍요, 가족의 형성, 장기적인 번영, 프로젝트의 성공적 마무리, 건강 증진, 새로운 활력", rv:"—"},
+      {code:"Dagaz", kr:"다가즈", name:"Dagaz (다가즈)", up:"새벽, 깨달음, 긍정적 변화, 관계의 새 출발, 갈등 해소, 재정 안정·번영, 수익 창출, 신체적 회복·활력 증진", rv:"—"},
+      {code:"Othala", kr:"오탈라", name:"Oþala (오탈라)", up:"유산, 안정, 번영, 행복, 갈등 해소, 장기적 재정 번영, 수익 창출, 가업 계승, 규칙적인 생활습관, 유전요인 관리", rv:"유산의 상실, 가족 간의 갈등, 재정 손실, 상속 문제, 재산 분쟁, 장기적 목표 달성 어려움, 스트레스"},
+      {code:"Yr", kr:"이르", name:"Yr (이르)", up:"무한한 가능성, 운명적인 만남, 새로운 관계 시작, 예상치 못한 재정적 기회, 터닝포인트, 신체적·정서적 회복, 새로운 건강 루틴 발견", rv:"무한한 가능성, 운명적인 만남, 새로운 관계 시작, 예상치 못한 재정적 기회, 터닝포인트, 신체적·정서적 회복, 새로운 건강 루틴 발견"}
     ];
 
     const grid = document.getElementById('grid');
@@ -268,10 +232,11 @@
     const drawResult = document.getElementById('drawResult');
     const toggleQuestion = document.getElementById('toggleQuestion');
     const questionInput = document.getElementById('questionInput');
+    const questionBox = document.getElementById('questionBox');
 
     function render(list){
       grid.innerHTML = '';
-      if(!list.length){ empty.style.display='block'; return; } else { empty.style.display='none'; }
+      empty.style.display = list.length ? 'none' : 'block';
       list.forEach(r => {
         const el = document.createElement('article');
         el.className = 'card';
@@ -313,48 +278,60 @@
       if(sort.value === 'name') list.sort((a,b)=> a.code.localeCompare(b.code));
       if(sort.value === 'korean') list.sort((a,b)=> a.kr.localeCompare(b.kr, 'ko'));
       render(list);
-      // (hash 저장 비활성화: 일부 브라우저에서 스크롤 점프 유발)
-      // location.hash = encodeURIComponent(term);
     }
 
     q.addEventListener('input', searchAndSort);
     sort.addEventListener('change', searchAndSort);
     showRev.addEventListener('change', searchAndSort);
 
-    // 초기 해시 검색어 복원
-    try {
-      if(location.hash.length > 1){ q.value = decodeURIComponent(location.hash.slice(1)); }
-    } catch {}
+    // 초기 검색어 복원 (hash 사용 시)
+    try { if(location.hash.length > 1){ q.value = decodeURIComponent(location.hash.slice(1)); } } catch {}
     searchAndSort();
 
     // --- Draw helpers ---
     function randomRune(){
       const r = RUNES[Math.floor(Math.random()*RUNES.length)];
-      const isReversed = Math.random() < 0.5; // 50% 확률로 역방향
+      const isReversed = Math.random() < 0.5;
       return { ...r, reversed: isReversed };
     }
+
+    // ✅ 하이라이트 카드 마크업 (역방향 뱃지 강조)
     function miniCard(r){
       const orientation = r.reversed ? '역방향' : '정방향';
       const mean = r.reversed ? ((r.rv && r.rv.trim() !== '—') ? r.rv : r.up) : r.up;
+      const badgeClass = r.reversed ? 'badge rev' : 'badge';
       return `
         <article class="card-mini">
           <div class="row">
             <span class="chip">${r.code}</span>
             <span class="chip">${r.kr}</span>
-            <span class="badge">${orientation}</span>
+            <span class="${badgeClass}">${orientation}</span>
           </div>
           <h4>${r.name}</h4>
           <p class="meaning">${mean}</p>
         </article>
       `;
     }
+
     function draw(n){
       const picked = Array.from({length:n}, () => randomRune());
-      const qtext = toggleQuestion.checked && questionInput.value.trim() ? `<div class="note">질문: ${questionInput.value.trim()}</div>` : '';
-      drawResult.innerHTML = qtext + picked.map(miniCard).join('');
-      // 스크롤 포커스
-      
+
+      // ✅ 질문은 그리드 밖에 고정 (밀림 방지)
+      const hasQ = toggleQuestion.checked && questionInput.value.trim();
+      if(hasQ){
+        questionBox.classList.remove('hidden');
+        questionBox.textContent = `질문: ${questionInput.value.trim()}`;
+      } else {
+        questionBox.classList.add('hidden');
+        questionBox.textContent = '';
+      }
+
+      // ✅ 모바일 포함 3카드 가로 고정
+      drawResult.classList.toggle('triple', n === 3);
+
+      drawResult.innerHTML = picked.map(miniCard).join('');
     }
+
     btnDraw1.addEventListener('click', ()=> draw(1));
     btnDraw3.addEventListener('click', ()=> draw(3));
     toggleQuestion.addEventListener('change', ()=>{
